@@ -9,7 +9,7 @@ root = tk.Tk()
 
 # Configuracion
 root.title("Agenda")
-root.geometry("700x500")
+root.geometry("750x500")
 root.config()
 
 
@@ -74,6 +74,16 @@ boton_agregar = tk.Button(frame_botonera,
                                            tabla_juegos),
     **estilo_boton)
 boton_agregar.pack(side="left", padx=8)
+
+boton_editar = tk.Button(frame_botonera,
+    text="Editar",
+    bg="#1565C0",
+    activebackground="#0D47A1",
+    command=lambda: acciones.editar_seleccionado(tabla_juegos, entry_juego_titulo, entry_juego_genero,
+                                                 entry_juego_plataforma, entry_juego_estado,
+                                                 boton_editar),
+    **estilo_boton)
+boton_editar.pack(side="left", padx=8)
 
 boton_eliminar = tk.Button(frame_botonera,
     text="Eliminar",

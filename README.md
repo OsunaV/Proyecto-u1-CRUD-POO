@@ -91,7 +91,16 @@ La ventana tiene dos secciones:
   confirmación antes de borrarlo.
 - Si pulsa **Eliminar** sin seleccionar nada, aparecerá un aviso.
 
-Los cambios se guardan automáticamente en el archivo; no hay botón de "guardar".
+**Editar un juego**
+
+1. Haga clic sobre la fila del juego en la tabla y pulse **Editar**.
+2. Los datos del juego aparecen en el formulario y el botón cambia a **Guardar Cambios**.
+3. Modifique lo que necesite y pulse **Guardar Cambios**. La tabla se actualiza y el
+   botón vuelve a decir **Editar**.
+
+Mientras se edita un juego, el botón **Eliminar** queda bloqueado hasta guardar los cambios.
+
+Los cambios se guardan automáticamente en el archivo al agregar, editar o eliminar.
 
 ---
 
@@ -100,7 +109,7 @@ Los cambios se guardan automáticamente en el archivo; no hay botón de "guardar
 | Archivo | Descripción |
 |---------|-------------|
 | `main.py` | Punto de entrada. Construye la ventana, el formulario, los botones y la tabla. |
-| `acciones.py` | Funciones que responden a los botones: agregar, eliminar, limpiar formulario y refrescar la tabla. |
+| `acciones.py` | Funciones que responden a los botones: agregar, editar, eliminar, limpiar formulario y refrescar la tabla. |
 | `datos.py` | Listas de géneros, plataformas y estados, y las funciones que leen y escriben `juegos.json`. |
 | `juegos.json` | Archivo donde se guarda el catálogo. Se crea solo si no existe. |
 | `correciones/` | Documentos en Markdown con el registro de errores corregidos y funcionalidades agregadas. |

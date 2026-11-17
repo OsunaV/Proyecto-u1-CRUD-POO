@@ -2,6 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 import datos as dt
 
+# Posición (en juegos.json) del juego que se está editando.
+# Vale None cuando no se está editando nada.
+indice_en_edicion = None
+
 
 def limpiar_formulario(entry_titulo, combo_genero, combo_plataforma, combo_estado):
     # 1. Borra el texto desde el carácter 0 hasta el final
@@ -52,6 +56,10 @@ def agregar_juego(entry_titulo, combo_genero, combo_plataforma, combo_estado, ta
 def eliminar_seleccionado(tabla):
     """Borra de juegos.json el juego que está seleccionado en la tabla."""
     # 1. Ver qué fila está seleccionada. selection() devuelve una tupla de ids.
+    if indice_en_edicion is not None:
+        messagebox.showwarning("Edición en curso", "Guarda los cambios del juego que estás editando antes de eliminar.")
+        return
+
     seleccion = tabla.selection()
     if not seleccion:
         messagebox.showwarning("Sin selección", "Selecciona un juego de la tabla para eliminarlo.")
@@ -70,4 +78,51 @@ def eliminar_seleccionado(tabla):
     dt.eliminar_juego(indice)
 
     # 4. Refrescar la tabla para que desaparezca la fila
+    cargar_tabla(tabla)
+
+
+def editar_seleccionado(tabla, entry_titulo, combo_genero, combo_plataforma, combo_estado, boton_editar):
+    """Funciona en dos pasos con el mismo botón:
+    1er clic: carga en el formulario el juego seleccionado en la tabla.
+    2do clic: guarda en juegos.json los datos modificados del formulario.
+    """
+    global indice_en_edicion
+
+    # ---- Paso 1: cargar el juego seleccionado en el formulario ----
+    if indice_en_edicion is None:
+        seleccion = tabla.selection()
+        if not seleccion:
+            messagebox.showwarning("Sin selección", "Selecciona un juego de la tabla para editarlo.")
+            return
+
+        indice = tabla.index(seleccion[0])
+        juego = dt.leer_archivo()[indice]  # se lee del JSON para conservar los datos exactos
+
+        limpiar_formulario(entry_titulo, combo_genero, combo_plataforma, combo_estado)
+        entry_titulo.insert(0, juego["titulo"])
+        combo_genero.set(juego["genero"])
+        combo_plataforma.set(juego["plataforma"])
+        combo_estado.set(juego["estado"])
+
+        indice_en_edicion = indice
+        boton_editar.config(text="Guardar Cambios")
+        return
+
+    # ---- Paso 2: guardar los cambios ----
+    titulo = entry_titulo.get().strip()
+    if not titulo:
+        messagebox.showwarning("Título vacío", "El título no puede quedar vacío.")
+        return
+
+    dt.editar_juego(
+        indice_en_edicion,
+        titulo=titulo,
+        genero=combo_genero.get(),
+        plataforma=combo_plataforma.get(),
+        estado=combo_estado.get(),
+    )
+
+    indice_en_edicion = None
+    boton_editar.config(text="Editar")
+    limpiar_formulario(entry_titulo, combo_genero, combo_plataforma, combo_estado)
     cargar_tabla(tabla)

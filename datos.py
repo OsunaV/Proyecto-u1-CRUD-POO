@@ -81,3 +81,17 @@ def eliminar_juego(indice):
         juegos.pop(indice)
         with open(ARCHIVO, "w", encoding="utf-8") as archivo:
             json.dump(juegos, archivo, indent=4, ensure_ascii=False)
+
+
+def editar_juego(indice, titulo, genero, plataforma, estado):
+    """Reemplaza los datos del juego que está en la posición `indice` y reescribe el archivo."""
+    juegos = leer_archivo()
+    if 0 <= indice < len(juegos):
+        juegos[indice] = {
+            "titulo": titulo,
+            "genero": genero,
+            "plataforma": plataforma,
+            "estado": estado
+        }
+        with open(ARCHIVO, "w", encoding="utf-8") as archivo:
+            json.dump(juegos, archivo, indent=4, ensure_ascii=False)
