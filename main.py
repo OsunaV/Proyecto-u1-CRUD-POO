@@ -8,7 +8,7 @@ import acciones
 root = tk.Tk()
 
 # Configuracion
-root.title("Agenda")
+root.title("Biblioteca de videojuegos")
 root.geometry("750x600")
 root.config()
 
