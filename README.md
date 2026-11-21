@@ -50,8 +50,8 @@ sudo apt install python3-tk
    Si lo descargó de GitHub:
 
    ```
-   git clone https://github.com/OsunaV/Proyecto-u1-CRUD-con-diccionarios.git
-   cd Proyecto-u1-CRUD-con-diccionarios
+   git clone https://github.com/OsunaV/Proyecto-u1-CRUD-POO.git
+   cd Proyecto-u1-CRUD-POO
    ```
 
 2. Ejecute el archivo principal:
