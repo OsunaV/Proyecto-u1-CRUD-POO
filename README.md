@@ -108,9 +108,10 @@ Los cambios se guardan automáticamente en el archivo al agregar, editar o elimi
 
 | Archivo | Descripción |
 |---------|-------------|
-| `main.py` | Punto de entrada. Construye la ventana, el formulario, los botones y la tabla. |
-| `acciones.py` | Funciones que responden a los botones: agregar, editar, eliminar, limpiar formulario y refrescar la tabla. |
-| `datos.py` | Listas de géneros, plataformas y estados, y las funciones que leen y escriben `juegos.json`. |
+| `main.py` | Punto de entrada. Clase `AplicacionCatalogo` (la ventana), que une la vista, el controlador y el catálogo. |
+| `vista.py` | Clases de la interfaz: `Tema` (colores y fuentes), `Formulario`, `Botonera` y `TablaJuegos`. |
+| `acciones.py` | Clase `ControladorCatalogo`: responde a los botones Agregar, Editar y Eliminar. |
+| `datos.py` | Clase `Videojuego` (un juego y las listas de géneros, plataformas y estados) y clase `Catalogo`, que lee y escribe `juegos.json`. |
 | `juegos.json` | Archivo donde se guarda el catálogo. Se crea solo si no existe. |
 | `correciones/` | Documentos en Markdown con el registro de errores corregidos y funcionalidades agregadas. |
 
